@@ -28,3 +28,5 @@ def setup_server():
     install_requirements()
 
 
+def rs():
+    local("python manage.py runserver -h 0.0.0.0")

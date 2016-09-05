@@ -23,12 +23,12 @@ Update ```project/server/config.py```, and then run:
 # For development
 $ fab set_dev
 $ fab create_db
-$ python manage.py runserver -h 0.0.0.0
+$ fab rs
 
 #For production
 $ fab set_prod
 $ fab create_db
-$ python manage.py runserver -h 0.0.0.0
+$ fab rs
 ```
 
 
