@@ -11,6 +11,13 @@
     <!-- styles -->
     <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.1/yeti/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="{{url_for('static', filename='main.css')}}" rel="stylesheet" media="screen">
+    <script>
+    $(function() {
+      $('#flash').delay(500).fadeIn('normal', function() {
+      $(this).delay(2000).fadeOut();
+    });
+    });
+    </script>
     {% block css %}{% endblock %}
   </head>
 
@@ -24,6 +31,7 @@
         <!-- messages -->
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
+        <ul class=flashes id="flash">
         <br>
         <div class="row">
           <div class="col-md-12">
@@ -34,7 +42,7 @@
             </div>
             {% endfor %}
           </div>
-        </div>
+        </div></ul>
         {% endif %}
         {% endwith %}
 

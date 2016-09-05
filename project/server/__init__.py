@@ -13,7 +13,9 @@ from flask_bcrypt import Bcrypt
 from flask_debugtoolbar import DebugToolbarExtension
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
-
+from flask_admin import Admin
+from flask_admin.contrib.sqla import ModelView
+import flask_restless
 
 ################
 #### config ####
@@ -24,7 +26,7 @@ app = Flask(
     template_folder='../client/templates',
     static_folder='../client/static'
 )
-
+admin = Admin(app, name="flask_boiler", template_mode='bootstrap3')
 
 app_settings = os.getenv('APP_SETTINGS', 'project.server.config.DevelopmentConfig')
 app.config.from_object(app_settings)
@@ -65,6 +67,21 @@ login_manager.login_message_category = 'danger'
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.filter(User.id == int(user_id)).first()
+
+###################
+### flask-admin ####
+###################
+# http://127.0.0.1:5000/admin
+admin.add_view(ModelView(User, db.session, endpoint='UserEndpoint'))
+
+
+###################
+### flask-restless ####
+###################
+manager = flask_restless.APIManager(app, flask_sqlalchemy_db=db)
+
+# http://127.0.0.1:5000/api/users
+manager.create_api(User, methods=['GET', 'POST', 'DELETE'])
 
 
 ########################
