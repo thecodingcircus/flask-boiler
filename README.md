@@ -1,19 +1,40 @@
-# Flask Skeleton
+# Flask Boiler
 
-Flask starter project...
 
-[![Build Status](https://travis-ci.org/realpython/flask-skeleton.svg?branch=master)](https://travis-ci.org/realpython/flask-skeleton)
+Flask starter project for rapid development using **Vagrant**.
+
 
 ## Quick Start
 
 ### Basics
 
-1. Activate a virtualenv
-1. Install the requirements
+1. Install Vagrant if not already.
+1. Clone project.
+2. Configure bootstrap.sh if needed.
+3. Initialize the environment by running ```vagrant up```
+4. SSH into vagrant and follow the below instructions.
 
-### Set Environment Variables
+### Set Environment Variables Within Vagrant Machine
 
-Update *project/server/config.py*, and then run:
+Update ```project/server/config.py```, and then run:
+
+#Option A (Fabfile)
+```
+# For development
+$ fab set_dev
+$ fab create_db
+$ python manage.py runserver -h 0.0.0.0
+
+#For production
+$ fab set_prod
+$ fab create_db
+$ python manage.py runserver -h 0.0.0.0
+```
+
+
+
+
+#Option B (Manual)
 
 ```sh
 $ export APP_SETTINGS="project.server.config.DevelopmentConfig"
