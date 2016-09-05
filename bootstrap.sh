@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 apt-get update
-apt-get install -y python-dev python-pip git fabric python-mysqldb
+apt-get install -y python-dev python-pip git fabric python-mysqldb libffi-dev
 mkdir -p /opt/projects
 cd /opt/projects
 git clone https://jaredhenry6@bitbucket.org/jaredhenry6/flask-boiler.git
