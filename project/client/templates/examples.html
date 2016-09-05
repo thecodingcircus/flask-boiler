@@ -1,0 +1,13 @@
+{% extends "_base.html" %}
+{% block content %}
+{% from "_modal.html" import modal_set %}
+<div class="col-md-3 col-md-offset-1">
+<div class="body-content">
+<div class="row">
+<h1>A simple Modal Example</h1><br>
+{{ modal_set("modal1","A Simple Test","Well well well","A Sample") }}
+</div>
+</div>
+</div>
+
+{% endblock %}
