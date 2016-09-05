@@ -6,7 +6,7 @@ mkdir -p /opt/projects
 cd /opt/projects
 git clone https://jaredhenry6@bitbucket.org/jaredhenry6/flask-boiler.git
 cd flask-boiler
-pip install -r requirements
+pip install -r requirements.txt
 
 
 
