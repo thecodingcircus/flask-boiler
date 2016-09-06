@@ -9,7 +9,7 @@ Flask starter project for rapid development using **Vagrant**.
 ### Basics
 
 1. Install Vagrant if not already.
-1. Clone project.
+1. Clone project. ```git clone https://jaredhenry6@bitbucket.org/jaredhenry6/flask-boiler.git```
 2. Configure bootstrap.sh if needed.
 3. Initialize the environment by running ```vagrant up```
 4. SSH into vagrant and follow the below instructions.
