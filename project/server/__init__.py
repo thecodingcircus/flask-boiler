@@ -8,13 +8,14 @@
 import os
 
 from flask import Flask, render_template
-from flask_login import LoginManager
+from flask_login import LoginManager, current_user
 from flask_bcrypt import Bcrypt
 from flask_debugtoolbar import DebugToolbarExtension
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
-from flask_admin import Admin
+from flask_admin import Admin, AdminIndexView
 from flask_admin.contrib.sqla import ModelView
+from flask_admin import helpers, expose
 import flask_restless
 
 ################
@@ -26,7 +27,6 @@ app = Flask(
     template_folder='../client/templates',
     static_folder='../client/static'
 )
-admin = Admin(app, name="flask_boiler", template_mode='bootstrap3')
 
 app_settings = os.getenv('APP_SETTINGS', 'project.server.config.DevelopmentConfig')
 app.config.from_object(app_settings)
@@ -71,6 +71,11 @@ def load_user(user_id):
 ###################
 ### flask-admin ####
 ###################
+
+class MyAdminIndexView(AdminIndexView):
+    def is_accessible(self):
+        return current_user.is_admin()
+admin = Admin(app, name='Flask Boiler', template_mode='bootstrap3', index_view=MyAdminIndexView())
 # http://127.0.0.1:5000/admin
 admin.add_view(ModelView(User, db.session, endpoint='UserEndpoint'))
 

@@ -27,6 +27,12 @@ class User(db.Model):
     def is_authenticated(self):
         return True
 
+    def is_admin(self):
+        if self.admin  == 1:
+            return True
+        else:
+            return False
+
     def is_active(self):
         return True
 
